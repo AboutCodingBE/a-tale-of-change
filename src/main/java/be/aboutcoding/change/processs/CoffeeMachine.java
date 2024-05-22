@@ -2,7 +2,6 @@ package be.aboutcoding.change.processs;
 
 import be.aboutcoding.change.api.CoffeeApi;
 import be.aboutcoding.change.api.CoffeeCup;
-import be.aboutcoding.change.api.CupOfCoffeeRequest;
 
 import java.util.Random;
 
@@ -25,7 +24,7 @@ public class CoffeeMachine {
     }
 
     public void boilWater() {
-        var volume =  coffeeApi.amountOfCoffee;
+        var volume =  coffeeApi.v;
         if(currentVoltage > boilerVoltage) {
             throw new RuntimeException("To high voltage! Boiler broke");
         }
@@ -35,7 +34,7 @@ public class CoffeeMachine {
         }
 
         System.out.println("- ...boiling water...");
-        this.currentWaterTemperatureInCelcius = getInitialWaterTemperature(volume);
+        this.currentWaterTemperatureInCelcius = getInitialWaterTemperature();
         while(currentWaterTemperatureInCelcius < boilingTemperatureInCelcius) {
             heatUp();
         }
@@ -44,7 +43,7 @@ public class CoffeeMachine {
     /**
      * Realistically put somewhere between 10 and 20 degrees I guess
      */
-    public int getInitialWaterTemperature(int volume) {
+    public int getInitialWaterTemperature() {
         var random = new Random();
         return random.nextInt(10)+10;
     }

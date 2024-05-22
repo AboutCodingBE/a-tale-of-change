@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/coffee")
 public class CoffeeApi {
 
-    public int amountOfCoffee;
+    public int v;
 
     @PostMapping()
     public CoffeeCup getCupOfCoffee(@RequestBody CupOfCoffeeRequest request) {
-        this.amountOfCoffee = request.requestedQuantity();
+        this.v = request.requestedQuantity();
 
         var coffeeMachine = new CoffeeMachine(this);
 
