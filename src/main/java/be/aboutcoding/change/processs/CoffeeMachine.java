@@ -20,7 +20,7 @@ public class CoffeeMachine {
     public final int boilerVoltage = 120;
     public boolean isOn = false;
 
-    public int maximumVolumeOfCanInCentiliter = 150;
+    public int maximumVolumeOfWaterContainer = 150;
 
     public CoffeeApi coffeeApi;
 
@@ -42,6 +42,10 @@ public class CoffeeMachine {
 
         if(currentVoltage < boilerVoltage - 10) {
             throw new RuntimeException("To low voltage! Heating water will take forever");
+        }
+
+        if(volume > maximumVolumeOfWaterContainer) {
+            throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfWaterContainer + " mililiters of water");
         }
 
         System.out.println("- ...boiling water...");
@@ -95,6 +99,7 @@ public class CoffeeMachine {
 
     //This is where you slowly pour the hot water over the coffee powder
     public CoffeeCup percolate(int amountOfPowder, int volumeOfBoilingWater) {
+        var volume =  coffeeApi.v;
         System.out.println("percolating....");
         try{
             Thread.sleep(1000);
@@ -102,8 +107,8 @@ public class CoffeeMachine {
         catch(InterruptedException ie) {
             throw new RuntimeException("Something went very wrong while percolating the coffee!");
         }
-        if(volumeOfBoilingWater > maximumVolumeOfCanInCentiliter) {
-            throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfCanInCentiliter + " mililiters of water");
+        if(volume > maximumVolumeOfWaterContainer) {
+            throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfWaterContainer + " mililiters of water");
         }
         return new CoffeeCup(volumeOfBoilingWater);
     }

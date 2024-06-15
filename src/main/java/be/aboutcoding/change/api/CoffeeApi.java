@@ -14,7 +14,7 @@ public class CoffeeApi {
 
     @PostMapping()
     public CoffeeCup getCupOfCoffee(@RequestBody CupOfCoffeeRequest request) {
-        this.v = request.requestedQuantity();
+        this.v = request.quantity();
 
         var coffeeMachine = new CoffeeMachine(this);
 
@@ -26,7 +26,7 @@ public class CoffeeApi {
 
         coffeeMachine.heatWater();
         var cupOfCoffee = coffeeMachine.percolate(50, v);
-        coffeeMachine.turnOn();
+        coffeeMachine.turnOff();
 
         return cupOfCoffee;
     }
