@@ -15,6 +15,10 @@ make that clear for the next developer.
 **[This is where you step in]**
 - Change the variable name in the `CoffeeApi.java` file. Please do so without using the automatic refactoring tool in your IDE. 
 - Compile the code
+- Don't forget to also change this line of code:
+```java
+this.v = request.quantity();
+```
 ---
 
 The code base does not compile anymore! We have a compilation error. 
