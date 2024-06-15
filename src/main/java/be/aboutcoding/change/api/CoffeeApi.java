@@ -18,10 +18,16 @@ public class CoffeeApi {
 
         var coffeeMachine = new CoffeeMachine(this);
 
-        // Let the gamer figure out what to do with the coffee machine class. Because there is no encapsulation
-        // the implementer of the class needs to figure out the right order of operations. For coffee this is easy,
-        // we all know the concept of making coffee. But what if it was a business process you are not familiar with?
+        // The coffee making process...
 
-        return new CoffeeCup(request.requestedQuantity());
+        coffeeMachine.addFilter();
+        coffeeMachine.addCoffeeGrounds(50);
+        coffeeMachine.turnOn();
+
+        coffeeMachine.heatWater();
+        var cupOfCoffee = coffeeMachine.percolate(50, v);
+        coffeeMachine.turnOn();
+
+        return cupOfCoffee;
     }
 }

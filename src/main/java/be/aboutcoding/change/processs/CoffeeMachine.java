@@ -6,6 +6,11 @@ import be.aboutcoding.change.api.CoffeeCup;
 import java.util.Random;
 
 public class CoffeeMachine {
+
+    public int amountOfCoffeeGrounds;
+
+    public boolean hasFilter = false;
+
     public int boilingTemperatureInCelcius = 100;
     public int currentWaterTemperatureInCelcius;
 
@@ -23,14 +28,20 @@ public class CoffeeMachine {
         this.coffeeApi = new CoffeeApi();
     }
 
-    public void boilWater() {
+    public void addFilter() {
+        this.hasFilter = true;
+    }
+
+    public void addCoffeeGrounds(int amountPowder){}
+
+    public void heatWater() {
         var volume =  coffeeApi.v;
         if(currentVoltage > boilerVoltage) {
             throw new RuntimeException("To high voltage! Boiler broke");
         }
 
         if(currentVoltage < boilerVoltage - 10) {
-            throw new RuntimeException("To low voltage! Boiling water will take forever");
+            throw new RuntimeException("To low voltage! Heating water will take forever");
         }
 
         System.out.println("- ...boiling water...");
@@ -82,19 +93,18 @@ public class CoffeeMachine {
         }
     }
 
-    //This is where you slowly pour the boiling water over the coffee powder
-    public CoffeeCup infuse(int amountOfPowder, int volumeOfBoilingWater) {
-        System.out.println("infusing....");
+    //This is where you slowly pour the hot water over the coffee powder
+    public CoffeeCup percolate(int amountOfPowder, int volumeOfBoilingWater) {
+        System.out.println("percolating....");
         try{
             Thread.sleep(1000);
         }
         catch(InterruptedException ie) {
-            throw new RuntimeException("Something went very wrong when infusing the coffee tast in the water!");
+            throw new RuntimeException("Something went very wrong while percolating the coffee!");
         }
         if(volumeOfBoilingWater > maximumVolumeOfCanInCentiliter) {
             throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfCanInCentiliter + " mililiters of water");
         }
-        System.out.println("enjoy your coffee");
         return new CoffeeCup(volumeOfBoilingWater);
     }
 }
