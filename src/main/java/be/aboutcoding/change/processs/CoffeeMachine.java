@@ -32,7 +32,9 @@ public class CoffeeMachine {
         this.hasFilter = true;
     }
 
-    public void addCoffeeGrounds(int amountPowder){}
+    public void addCoffeeGrounds(int amountPowder){
+        this.amountOfCoffeeGrounds = amountPowder;
+    }
 
     public void heatWater() {
         var volume =  coffeeApi.v;
