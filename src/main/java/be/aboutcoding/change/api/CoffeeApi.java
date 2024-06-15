@@ -16,7 +16,7 @@ public class CoffeeApi {
     public CoffeeCup getCupOfCoffee(@RequestBody CupOfCoffeeRequest request) {
         this.v = request.quantity();
 
-        var coffeeMachine = new CoffeeMachine(this);
+        var coffeeMachine = new CoffeeMachine(request);
 
         // The coffee making process...
 

@@ -2,6 +2,7 @@ package be.aboutcoding.change.processs;
 
 import be.aboutcoding.change.api.CoffeeApi;
 import be.aboutcoding.change.api.CoffeeCup;
+import be.aboutcoding.change.api.CupOfCoffeeRequest;
 
 import java.util.Random;
 
@@ -22,10 +23,10 @@ public class CoffeeMachine {
 
     public int maximumVolumeOfWaterContainer = 150;
 
-    public CoffeeApi coffeeApi;
+    public int requestedVolumeOfCoffee;
 
-    public CoffeeMachine(CoffeeApi coffeeApi) {
-        this.coffeeApi = new CoffeeApi();
+    public CoffeeMachine(CupOfCoffeeRequest coffeeRequest) {
+        this.requestedVolumeOfCoffee = coffeeRequest.quantity();
     }
 
     public void addFilter() {
@@ -37,7 +38,7 @@ public class CoffeeMachine {
     }
 
     public void heatWater() {
-        var volume =  coffeeApi.v;
+
         if(currentVoltage > boilerVoltage) {
             throw new RuntimeException("To high voltage! Boiler broke");
         }
@@ -46,7 +47,7 @@ public class CoffeeMachine {
             throw new RuntimeException("To low voltage! Heating water will take forever");
         }
 
-        if(volume > maximumVolumeOfWaterContainer) {
+        if(this.requestedVolumeOfCoffee > maximumVolumeOfWaterContainer) {
             throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfWaterContainer + " mililiters of water");
         }
 
@@ -101,7 +102,6 @@ public class CoffeeMachine {
 
     //This is where you slowly pour the hot water over the coffee powder
     public CoffeeCup percolate() {
-        var volume =  coffeeApi.v;
         System.out.println("percolating....");
         try{
             Thread.sleep(1000);
@@ -109,9 +109,9 @@ public class CoffeeMachine {
         catch(InterruptedException ie) {
             throw new RuntimeException("Something went very wrong while percolating the coffee!");
         }
-        if(volume > maximumVolumeOfWaterContainer) {
+        if(this.requestedVolumeOfCoffee > maximumVolumeOfWaterContainer) {
             throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfWaterContainer + " mililiters of water");
         }
-        return new CoffeeCup(volume);
+        return new CoffeeCup(this.requestedVolumeOfCoffee);
     }
 }
