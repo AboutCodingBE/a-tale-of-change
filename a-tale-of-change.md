@@ -1,6 +1,6 @@
 # A tale of change
 
-This is an experience driven exercise for starting developers. The aim of this exercise is to bring insight in some
+This is an experience driven exercise for starting developers. The aim of this exercise is to bring some insight in a handful of
 fundamental software design principles: Connascence, coupling, cohesion and abstraction. 
 
 This is a scripted exercise. The point is that you follow the script which will lead you into some hopefully insightful 
