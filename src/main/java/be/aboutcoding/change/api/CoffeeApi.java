@@ -25,7 +25,7 @@ public class CoffeeApi {
         coffeeMachine.turnOn();
 
         coffeeMachine.heatWater();
-        var cupOfCoffee = coffeeMachine.percolate(50, v);
+        var cupOfCoffee = coffeeMachine.percolate();
         coffeeMachine.turnOff();
 
         return cupOfCoffee;

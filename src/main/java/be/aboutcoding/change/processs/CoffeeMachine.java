@@ -98,7 +98,7 @@ public class CoffeeMachine {
     }
 
     //This is where you slowly pour the hot water over the coffee powder
-    public CoffeeCup percolate(int amountOfPowder, int volumeOfBoilingWater) {
+    public CoffeeCup percolate() {
         var volume =  coffeeApi.v;
         System.out.println("percolating....");
         try{
