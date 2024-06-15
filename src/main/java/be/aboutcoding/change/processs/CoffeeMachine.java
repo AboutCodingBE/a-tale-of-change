@@ -110,6 +110,6 @@ public class CoffeeMachine {
         if(volume > maximumVolumeOfWaterContainer) {
             throw new RuntimeException("Too much boiling water! This machine can currently handle " + maximumVolumeOfWaterContainer + " mililiters of water");
         }
-        return new CoffeeCup(volumeOfBoilingWater);
+        return new CoffeeCup(volume);
     }
 }
